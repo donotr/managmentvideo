@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AppTheme{
-
-  ThemeData getTheme()=> ThemeData(
-
+// ignore: camel_case_types
+class appTheme{
+  ThemeData getTheme() => ThemeData(
     useMaterial3: true,
-    brightness: Brightness.light
+    brightness: Brightness.dark
   );
-
-
 }

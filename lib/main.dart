@@ -5,7 +5,7 @@ import 'package:video_managment/presentation/providers/discover_provider.dart';
 import 'package:video_managment/presentation/screen/discover_screen.dart';
 
 
-void main()=> runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,30 +13,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider( create: (_) => DiscoverProvider())
-
-
+    providers: [
+      ChangeNotifierProvider(
+        lazy: false,
+        create: (_) => DiscoverProvider()..loadNextPage())
     ],
     child: MaterialApp(
       title: 'AppVideos',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme().getTheme(),
-      home:  const DiscoverScreen(),
-    ),
-    ); 
-    
-    /*MaterialApp(
-      title: 'AppVideos',
-      debugShowCheckedModeBanner: false,
-      theme:AppTheme().getTheme(),
-      home:Scaffold(
-        appBar: AppBar(title: const Text('Material App Bar Videos'),
-        ),
-        body: const Center(
-          child: Text('Hola mundo'),
-        ),
-        ),
-    );*/
+      theme: appTheme().getTheme(),
+      home: const DiscoverScreen()
+      ),
+    );
   }
 }

@@ -39,11 +39,21 @@ class _FullScreenPlayerState extends State<FullScreenPlayer>{
 
   @override
   Widget build(BuildContext context){
+
+    //ESTA PARTE ES LA QUE DESPLIEGA EL VIDEO.
    return FutureBuilder(
     future: controller.initialize(),
-    builder: ((context, snapshot) {
-          return const Center(child: CircularProgressIndicator(strokeWidth: 2,),);         
-    }));
+    builder: (context, snapshot){
+      if(snapshot.connectionState != ConnectionState.done){
+        return const Center(child: CircularProgressIndicator(strokeWidth: 2,),);     
+      }    
+
+      return AspectRatio(
+      aspectRatio: controller.value.aspectRatio,
+      child: VideoPlayer(controller),
+      );
+    }
+    );
 
   }
 }
